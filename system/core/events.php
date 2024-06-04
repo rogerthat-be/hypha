@@ -624,18 +624,18 @@
 		Parameters:
 		@param array $vars - variables to dump
 	*/
-	function dump(...$vars) {
-		global $O_O;
-		global $hyphaDumpList;
+	// function dump(...$vars) {
+	// 	global $O_O;
+	// 	global $hyphaDumpList;
 
-		// add caller as first variable
-		$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
-		$file = str_replace($O_O->getRootPath(), '', $caller['file']);
-		$line = $caller['line'];
-		array_unshift($vars, $file . ':' . $line);
+	// 	// add caller as first variable
+	// 	$caller = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
+	// 	$file = str_replace($O_O->getRootPath(), '', $caller['file']);
+	// 	$line = $caller['line'];
+	// 	array_unshift($vars, $file . ':' . $line);
 
-		// serialize now, rather than in addDumps, to capture
-		// the current state of objects (rather than the state
-		// at the end of the request).
-		$hyphaDumpList[] = array_map('convertForDump', $vars);
-	}
+	// 	// serialize now, rather than in addDumps, to capture
+	// 	// the current state of objects (rather than the state
+	// 	// at the end of the request).
+	// 	$hyphaDumpList[] = array_map('convertForDump', $vars);
+	// }

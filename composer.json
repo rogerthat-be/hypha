@@ -13,6 +13,7 @@
     ],
     "require": {
         "scotteh/php-dom-wrapper": "^3.0",
-        "mollie/mollie-api-php": "^2.67"
+        "mollie/mollie-api-php": "^2.67",
+        "symfony/var-dumper": "^6.4"
     }
 }
