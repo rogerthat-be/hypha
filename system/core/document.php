@@ -322,13 +322,16 @@
 		// This allows a form to be directly appended to a
 		// DomElement (e.g. $div->append($form)) as if it was a
 		// DomElement itself.
-		public function getIterator() {
+		public function getIterator(): \Traversable {
 			return $this->root->children();
 		}
 
 		public function getId() {
-			return $this->root->find('form')->first()->getId();
-		}
+			$form = $this->root->find('form')->first();
+			if ($form !== null) {
+				return $form->getId();
+			}
+			return null;		}
 
 		/*
 			Function: scanForm

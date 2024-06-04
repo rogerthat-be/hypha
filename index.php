@@ -26,7 +26,7 @@
 
 	// autoload composer packages
 	if (file_exists('vendor/autoload.php')) require_once('vendor/autoload.php');
-	
+
 
 	if (strnatcmp(phpversion(),'5.4') < 0) die('Error: you are running php version '.substr(phpversion(),0,strpos(phpversion(), '-')).'; Hypha works only with php version 5.4 and higher');
 	if (function_exists('apache_get_modules') && !in_array('mod_rewrite', apache_get_modules())) die ('Error: Apache should have mod_rewrite enabled');
@@ -157,10 +157,14 @@
 	// Add the default form. This does not happen earlier, since
 	// appending makes a copy of the form, so now we can be sure
 	// that all changes (if any) to the form are taken into account.
-	$hyphaHtml->find('body')->children()->wrapAll($hyphaHtml->getDefaultForm());
+	$form = $hyphaHtml->getDefaultForm();
+	if ($form) {
+		$formNodeList = $hyphaHtml->find('form');
+		$hyphaHtml->find('body')->children()->wrapAll($formNodeList);
+	}
 
 	// poor man's cron job
-	if (time() - hypha_getLastDigestTime() >= hypha_getDigestInterval()) flushDigest();
+	if (time() - intval(hypha_getLastDigestTime()) >= hypha_getDigestInterval()) flushDigest();
 
 	/*
 		Group: Stage 7 - Output

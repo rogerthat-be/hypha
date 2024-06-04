@@ -259,7 +259,7 @@ EOF;
 
 				// write stats
 				if (!isUser())
-					hypha_incrementStats(hypha_getLastDigestTime() + hypha_getDigestInterval());
+					hypha_incrementStats(hypha_getLastDigestTime() . hypha_getDigestInterval());
 			} else {
 				http_response_code(404);
 				if ($isPrivate && !isUser()) {
