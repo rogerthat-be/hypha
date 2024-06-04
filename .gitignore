@@ -9,3 +9,5 @@
 DEBUG
 /data/themes/*/
 !/data/themes/default/
+
+/vendor/

@@ -5,7 +5,7 @@
 		This chapter describes how the HTML document is built
 	*/
 
-	require_once dirname(__FILE__).'/../php-dom-wrapper/All.php';
+	// require_once dirname(__FILE__).'/../php-dom-wrapper/All.php';
 
 	/*
 		Variable: $postProcessingList
