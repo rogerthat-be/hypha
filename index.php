@@ -159,8 +159,33 @@
 	// that all changes (if any) to the form are taken into account.
 	$form = $hyphaHtml->getDefaultForm();
 	if ($form) {
-		$formNodeList = $hyphaHtml->find('form');
-		$hyphaHtml->find('body')->children()->wrapAll($formNodeList);
+		// Access the root DOM element of the form
+		$formNode = $form->root;
+
+		// Check if the root is a valid DOM element
+		if ($formNode instanceof \DOMElement) {
+			// Create a new DOMWrap document for the wrapper div
+			$document = new \DOMWrap\Document();
+			
+			// Create the wrapper div element
+			$wrapperDiv = $document->createElement('div');
+			$wrapperDiv->addClass('form-wrapper');
+			
+			// Import the form node into the DOMWrap document and append it to the wrapper div
+			$importedFormNode = $document->importNode($formNode, true);
+
+
+			$wrapperDiv->appendChild($importedFormNode);
+			
+			// Find the body element's children in the original hyphaHtml document
+			$bodyChildren = $hyphaHtml->find('body')->children();
+
+			
+			// Wrap the body children with the wrapper div
+			$bodyChildren->wrapAll($wrapperDiv);
+		} else {
+			echo 'The form root element is not a valid DOM element.';
+		}
 	}
 
 	// poor man's cron job

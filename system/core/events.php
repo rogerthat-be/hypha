@@ -98,6 +98,7 @@
 		var evt = new jQuery.Event("submit");
 		evt.preventDefault();
 		$form.trigger(evt);
+		console.log($form);
 		$form[0].__proto__.submit.call($form[0]);
 	}
 
